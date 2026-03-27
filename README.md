@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
+# POIS Programming Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive visualizer for the cryptographic reduction chain **OWF → PRG → PRF → PRP**, built for CS 8.401 Principles of Information Security.
 
-Currently, two official plugins are available:
+## What's inside
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Tab | What it does |
+|-----|-------------|
+| **Clique Explorer** | Step through the full reduction graph — pick a foundation (AES-128 or DLP), source primitive, and target primitive to see the live reduction trace |
+| **PA1 — OWF/PRG** | AES Davies-Meyer OWF and DLP OWF (`f(x) = g^x mod p`), HILL PRG construction, NIST SP 800-22 randomness tests |
+| **PA2 — PRF/GGM** | GGM PRF binary tree visualizer, AES plug-in PRF, χ² distinguishing game |
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Node.js** v18+ (project uses v22)
+- **npm** v9+
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 1. Clone
+git clone https://github.com/manasakalaimalai/POIS-Programming-Assignment.git
+cd POIS-Programming-Assignment
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 2. Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 3. Start dev server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open **http://localhost:5173** in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Other commands
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build      # type-check + production build → dist/
+npm run preview    # preview the production build locally
 ```
+
+## Project structure
+
+```
+src/
+├── App.tsx                        # Tab bar — routes between the three views
+└── pois/
+    ├── crypto/
+    │   ├── aes128.ts              # AES-128 scratch implementation (FIPS 197)
+    │   ├── dlp.ts                 # DLP OWF: f(x) = g^x mod p
+    │   ├── owf.ts                 # OWF oracle factories (AES Davies-Meyer, DLP)
+    │   ├── prg.ts                 # HILL PRG, fast AES split PRG for GGM
+    │   └── prf.ts                 # GGM PRF, AES PRF, distinguishing game
+    ├── stats/
+    │   └── randomness.ts          # NIST SP 800-22: monobit, block freq, runs
+    ├── engine/
+    │   ├── leg1.ts                # Builds primitive instances along the clique
+    │   └── leg2.ts                # Applies reductions between primitives
+    ├── foundation/
+    │   └── foundation.ts          # Wires AES / DLP into the oracle abstraction
+    ├── reductions/
+    │   ├── edges.ts               # Forward + backward reduction edges
+    │   └── routing.ts             # BFS route finder across the clique graph
+    └── ui/
+        ├── PoisCliqueExplorer.tsx  # PA0 — clique explorer UI
+        ├── Pa1Demo.tsx             # PA1 — OWF/PRG playground
+        └── Pa2GgmVisualizer.tsx    # PA2 — GGM tree + distinguishing game
+```
+
+## Contributing
+
+1. Create a branch: `git checkout -b pa3-your-name`
+2. Make your changes
+3. `npm run build` must pass with zero errors before opening a PR
+4. Open a pull request against `main`
+
+Higher PA stubs (MAC, CRHF, HMAC) are marked `not_implemented` with `duePa` annotations in `src/pois/reductions/edges.ts` — that's the starting point for PA3+.

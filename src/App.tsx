@@ -9,6 +9,7 @@ import Pa6CcaDemo from './pois/ui/Pa6CcaDemo'
 import Pa7MerkleDamgardDemo from './pois/ui/Pa7MerkleDamgardDemo'
 import Pa8DlpHashDemo from './pois/ui/Pa8DlpHashDemo'
 import Pa9BirthdayDemo from './pois/ui/Pa9BirthdayDemo'
+import Pa10HmacDemo from './pois/ui/Pa10HmacDemo'
 import Pa11DiffieHellmanDemo from './pois/ui/Pa11DiffieHellmanDemo'
 import Pa12RsaDemo from './pois/ui/Pa12RsaDemo'
 import Pa13MillerRabinDemo from './pois/ui/Pa13MillerRabinDemo'
@@ -25,6 +26,7 @@ const TABS = [
   { id: 'pa7',    label: 'PA7 — Merkle-Damgård' },
   { id: 'pa8',    label: 'PA8 — DLP Hash' },
   { id: 'pa9',    label: 'PA9 — Birthday' },
+  { id: 'pa10',   label: 'PA10 — HMAC' },
   { id: 'pa11',   label: 'PA11 — Diffie-Hellman' },
   { id: 'pa12',   label: 'PA12 — RSA' },
   { id: 'pa13',   label: 'PA13 — Primality' },
@@ -81,6 +83,7 @@ export default function App() {
         {tab === 'pa7'    && <Pa7MerkleDamgardDemo />}
         {tab === 'pa8'    && <Pa8DlpHashDemo />}
         {tab === 'pa9'    && <Pa9BirthdayDemo />}
+        {tab === 'pa10'   && <Pa10HmacDemo />}
         {tab === 'pa11'   && <Pa11DiffieHellmanDemo />}
         {tab === 'pa12'   && <Pa12RsaDemo />}
         {tab === 'pa13'   && <Pa13MillerRabinDemo />}

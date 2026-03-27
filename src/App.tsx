@@ -17,6 +17,7 @@ import Pa14CrtDemo from './pois/ui/Pa14CrtDemo'
 import Pa15DigitalSigDemo from './pois/ui/Pa15DigitalSigDemo'
 import Pa16ElGamalDemo from './pois/ui/Pa16ElGamalDemo'
 import Pa17CcaPkcDemo from './pois/ui/Pa17CcaPkcDemo'
+import Pa18OtDemo from './pois/ui/Pa18OtDemo'
 import './App.css'
 
 const TABS = [
@@ -38,6 +39,7 @@ const TABS = [
   { id: 'pa15',   label: 'PA15 — Digital Sig' },
   { id: 'pa16',   label: 'PA16 — ElGamal' },
   { id: 'pa17',   label: 'PA17 — CCA PKC' },
+  { id: 'pa18',   label: 'PA18 — OT' },
 ] as const
 type TabId = (typeof TABS)[number]['id']
 
@@ -99,6 +101,7 @@ export default function App() {
         {tab === 'pa15'   && <Pa15DigitalSigDemo />}
         {tab === 'pa16'   && <Pa16ElGamalDemo />}
         {tab === 'pa17'   && <Pa17CcaPkcDemo />}
+        {tab === 'pa18'   && <Pa18OtDemo />}
       </div>
     </div>
   )

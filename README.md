@@ -225,11 +225,11 @@ All demos use small parameters for instant in-browser computation:
 
 ## Team
 
-- Manasa Kalaimalai
-- Kevin Thakkar
-- Sparsh
-- Neel
-- Abhinav
+- Kevin Thakkar - 2022101064
+- Manasa Kalaimalai - 2022101131
+- Neel Amrutia - 2022101117
+- Sparsh Goel - 2022101051
+- Abhinav S - 2022102037
 
 ## Contributing
 

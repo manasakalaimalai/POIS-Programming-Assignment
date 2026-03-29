@@ -5,6 +5,7 @@ import Pa2GgmVisualizer from './pois/ui/Pa2GgmVisualizer'
 import Pa3CpaDemo from './pois/ui/Pa3CpaDemo'
 import Pa5MacDemo from './pois/ui/Pa5MacDemo'
 import Pa7MerkleDamgardDemo from './pois/ui/Pa7MerkleDamgardDemo'
+import Pa13MillerRabinDemo from './pois/ui/Pa13MillerRabinDemo'
 import './App.css'
 
 const TABS = [
@@ -14,6 +15,7 @@ const TABS = [
   { id: 'pa3',    label: 'PA3 — CPA-Enc' },
   { id: 'pa5',    label: 'PA5 — MAC' },
   { id: 'pa7',    label: 'PA7 — Merkle-Damgård' },
+  { id: 'pa13',   label: 'PA13 — Primality' },
 ] as const
 type TabId = (typeof TABS)[number]['id']
 
@@ -63,6 +65,7 @@ export default function App() {
         {tab === 'pa3'    && <Pa3CpaDemo />}
         {tab === 'pa5'    && <Pa5MacDemo />}
         {tab === 'pa7'    && <Pa7MerkleDamgardDemo />}
+        {tab === 'pa13'   && <Pa13MillerRabinDemo />}
       </div>
     </div>
   )

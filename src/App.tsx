@@ -7,6 +7,7 @@ import Pa4ModesDemo from './pois/ui/Pa4ModesDemo'
 import Pa5MacDemo from './pois/ui/Pa5MacDemo'
 import Pa6CcaDemo from './pois/ui/Pa6CcaDemo'
 import Pa7MerkleDamgardDemo from './pois/ui/Pa7MerkleDamgardDemo'
+import Pa8DlpHashDemo from './pois/ui/Pa8DlpHashDemo'
 import Pa13MillerRabinDemo from './pois/ui/Pa13MillerRabinDemo'
 import './App.css'
 
@@ -19,6 +20,7 @@ const TABS = [
   { id: 'pa5',    label: 'PA5 — MAC' },
   { id: 'pa6',    label: 'PA6 — CCA-Enc' },
   { id: 'pa7',    label: 'PA7 — Merkle-Damgård' },
+  { id: 'pa8',    label: 'PA8 — DLP Hash' },
   { id: 'pa13',   label: 'PA13 — Primality' },
 ] as const
 type TabId = (typeof TABS)[number]['id']
@@ -71,6 +73,7 @@ export default function App() {
         {tab === 'pa5'    && <Pa5MacDemo />}
         {tab === 'pa6'    && <Pa6CcaDemo />}
         {tab === 'pa7'    && <Pa7MerkleDamgardDemo />}
+        {tab === 'pa8'    && <Pa8DlpHashDemo />}
         {tab === 'pa13'   && <Pa13MillerRabinDemo />}
       </div>
     </div>
